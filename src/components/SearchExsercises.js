@@ -5,6 +5,17 @@ import { exerciseOptions, fetchData } from '../utils/fetchData';
 import HorizontalScrollbar from './HorizontalScrollbar';
 
 const SearchExsercises = () => {
+   const [search, setSearch] = useState('')
+
+   const handleSearch =() =>{
+    const handleSearch = async () =>{
+      if(search){
+        const exercisesData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions);
+
+        
+      }
+    }
+   
   return (
     <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
     <Typography fontWeight={700} sx={{
@@ -26,8 +37,8 @@ const SearchExsercises = () => {
           borderRadius:  '40px'
         }}
         height="76px"
-        value=""
-        onChange={(e)=> {}}
+        value={search}
+        onChange={(e)=> setSearch(e.target.value.toLowerCase())}
         placeholder='Search Exercises'
         type="text"
       />
@@ -42,6 +53,7 @@ const SearchExsercises = () => {
         position: "absolute",
         right: '0'
       }}
+      onClick={handleSearch}
       >
         Search
       </Button>
@@ -49,6 +61,6 @@ const SearchExsercises = () => {
       
     </Stack>
   )
-}
+}}
 
 export default SearchExsercises
